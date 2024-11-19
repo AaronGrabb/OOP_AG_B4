@@ -24,7 +24,20 @@ public class Ex3_Client {
     }
 
     public void mowLawn(){
+double baseFee = 30;
+if(lawnSize >= 1000){
+    baseFee += 0.1 * lawnSize;
+}
+else{
+    baseFee += 0.2 * lawnSize;
+}
+if(hasDog){
+    baseFee += 40;
+}
 
+fees += baseFee;
+        System.out.println(name + "Your lawn was mowed for the price of " + baseFee);
+        System.out.println("You owe $" + fees);
     }
 
 }

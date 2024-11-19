@@ -14,6 +14,14 @@ public class Ex3_Main {
         allClients.add(new Ex3_Client("Plank", "89 Nazi Dr", 3400, true));
 
         for (int i = 0; i < allClients.size(); i++) {
+            allClients.get(i).mowLawn();
+        }
+
+        for (Ex3_Client clientTemp:  allClients){
+            clientTemp.mowLawn();
+        }
+
+        for (int i = 0; i < allClients.size(); i++) {
             System.out.println( allClients.get(i));
         }
 
