@@ -36,8 +36,31 @@ if(hasDog){
 }
 
 fees += baseFee;
-        System.out.println(name + "Your lawn was mowed for the price of " + baseFee);
+        System.out.println(name + " your lawn was mowed for the price of " + baseFee);
         System.out.println("You owe $" + fees);
+    }
+
+    public void processPayments(double dollars){
+        fees -= dollars;
+        System.out.println(name + "you currently owe $"+ fees);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void delinquent(){
+        if(fees > 1200){
+            double interest = 10 +fees*0.05;
+            fees += interest;
+            System.out.println(name + " your payment is overdue. You have been charged interest of $"+interest);
+        }
+        if(hasDog){
+            hasDog = false;
+            System.out.println("There is a price to be paid.");
+
+        }
+
     }
 
 }
