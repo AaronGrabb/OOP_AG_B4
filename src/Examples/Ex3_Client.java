@@ -26,7 +26,7 @@ public class Ex3_Client {
     }
 
     //instance methods
-    public String toString(){
+    public String printMe(){
         return name +"  " + address + "  " + lawnSize + "  " + hasDog + "  " + fees;
     }
 

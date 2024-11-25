@@ -60,7 +60,7 @@ loadFile("data/lawnData.csv", allClients);
                 }
 
             } else {
-
+saveFile("data/lawnData.csv", allClients);
                 break;
             }
         } // while

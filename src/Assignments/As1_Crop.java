@@ -17,7 +17,7 @@ public class As1_Crop {
     }
     //Instance methods
 public String toString(){
-        return name + "  " + yield + "  " + units + "  " + price;
+        return name + "  " + yield + "  " + units + " per acre $" + price + " per ton  Num of Acres:" + acres;
 }
 
     public void setName(String name) {
@@ -38,5 +38,14 @@ public String toString(){
 
     public void setAcres(int acres) {
         this.acres = acres;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void searchHarvest(){
+        double fees;
+
     }
 }
