@@ -31,17 +31,40 @@ public class As1_Main {
 
 
             int choice = Examples.Library.input.nextInt();
-            Examples.Library.input.nextLine();
+            Library.input.nextLine();
             if (choice == 1) {
 
                 for (int i = 0; i < allCrops.size(); i++) {
-                    System.out.println(allCrops.get(i));
+                    System.out.println(allCrops.get(i).printMe());
 
                 }
 
             } else if (choice == 2) {
+                System.out.println("Which crop would you like to harvest?");
+                String harvestPlant = Library.input.nextLine();
+
+
                 for (int i = 0; i < allCrops.size(); i++) {
-                    allCrops.get(i).searchHarvest();
+                    System.out.println(allCrops.get(i).getName());
+                    System.out.println(harvestPlant);
+
+                    if(allCrops.get(i).getName().equalsIgnoreCase(harvestPlant)){
+
+                        System.out.println(allCrops.get(i).printMe());
+                        System.out.println("Do you want to harvest this crop?");
+                        String harvesting = Library.input.nextLine();
+                        if(harvesting.toLowerCase().contains("y")){
+                            System.out.println("Harvesting: "+harvestPlant);
+                           double earnings = allCrops.get(i).harvest();
+                            System.out.println("You gained $"+earnings);
+
+
+                        }
+
+                    }
+                    else{
+                        System.out.println("Not FOund");
+                    }
 
                 }
             } else if (choice == 3) {

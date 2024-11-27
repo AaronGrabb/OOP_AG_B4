@@ -44,8 +44,14 @@ public String toString(){
         return name;
     }
 
-    public void searchHarvest(){
-        double fees;
+    public String printMe(){
+        return name + "  " + yield + "  " + units + " per acre $" + price + " per ton  Num of Acres:" + acres;
+    }
+    public double harvest(){
+        double money;
+        money = price*yield*acres;
+setAcres(0);
+return money;
 
     }
 }
