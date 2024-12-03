@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class As1_Main {
     public static void run(){
 
+        double totalRevenue = 0;
+
         ArrayList<As1_Crop> allCrops = new ArrayList<>();
 
         allCrops.add(new As1_Crop("Grapes", 10, "tonnes", 10.96*1000));
@@ -44,42 +46,53 @@ public class As1_Main {
                 String harvestPlant = Library.input.nextLine();
 
 
-                for (int i = 0; i < allCrops.size(); i++) {
-                    System.out.println(allCrops.get(i).getName());
-                    System.out.println(harvestPlant);
 
-                    if(allCrops.get(i).getName().equalsIgnoreCase(harvestPlant)){
 
-                        System.out.println(allCrops.get(i).printMe());
+                    int foundIndex = searchByName(allCrops, harvestPlant);
+                    if(foundIndex > -1) {
+                        System.out.println(allCrops.get(foundIndex).printMe());
                         System.out.println("Do you want to harvest this crop?");
                         String harvesting = Library.input.nextLine();
-                        if(harvesting.toLowerCase().contains("y")){
-                            System.out.println("Harvesting: "+harvestPlant);
-                           double earnings = allCrops.get(i).harvest();
-                            System.out.println("You gained $"+earnings);
-
-
+                        if (harvesting.toLowerCase().contains("y")) {
+                            System.out.println("Harvesting: " + harvestPlant);
+                            double earnings = allCrops.get(foundIndex).harvest();
+                            totalRevenue += earnings;
+                            System.out.println("You gained $" + earnings);
                         }
-
                     }
+
                     else{
                         System.out.println("Not FOund");
                     }
 
-                }
+
             } else if (choice == 3) {
-                System.out.println("Who is paying?");
-                String name = Examples.Library.input.nextLine();
-                System.out.println("How much?");
-                double amount = Examples.Library.input.nextDouble();
-                Library.input.nextLine();
-
-//                int foundClient = searchByName(allCrops, name);
-//                allCrops.get(foundClient).processPayments(amount);
-
+                System.out.println("Total Revenue gained :$" + totalRevenue);
 
             } else if (choice == 4) {
-
+                System.out.println("Which crop would like to plant?");
+                String newCrop = Library.input.nextLine();
+                if(searchByName(allCrops, newCrop) > -1){
+                    System.out.println("How many acres of it do you want to plant?");
+                    int newAcres = Library.input.nextInt();
+                    Library.input.nextLine();
+                    allCrops.get(searchByName(allCrops, newCrop)).setAcres(allCrops.get(searchByName(allCrops, newCrop)).addAcres(allCrops,newAcres,searchByName(allCrops, newCrop)));
+                }
+                else{
+                    System.out.println("This is a new plant! how many acres of it do you want to plant?");
+                    int newAcres = Library.input.nextInt();
+                    Library.input.nextLine();
+                    System.out.println("What unit is it measured in?");
+                    String newUnit = Library.input.nextLine();
+                    System.out.println("How many " + newUnit + " per acre is produced?");
+                    double newYield = Library.input.nextDouble();
+                    Library.input.nextLine();
+                    System.out.println("What's the price per "+ newUnit + "?");
+                    double newPrice = Library.input.nextDouble();
+                    Library.input.nextLine();
+                    allCrops.add(new As1_Crop(newCrop,newYield, newUnit,newPrice));
+                    allCrops.get(allCrops.size() -1).setAcres(newAcres);
+                }
 
             } else {
 

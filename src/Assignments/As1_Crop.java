@@ -1,5 +1,7 @@
 package Assignments;
 
+import java.util.ArrayList;
+
 public class As1_Crop {
     //instance variables
     private String name;
@@ -39,6 +41,13 @@ public String toString(){
     public void setAcres(int acres) {
         this.acres = acres;
     }
+
+    public int addAcres(ArrayList<As1_Crop> list, int a, int i){
+        int newAcres;
+        newAcres = a + list.get(i).acres;
+        return newAcres;
+    }
+
 
     public String getName() {
         return name;
