@@ -9,7 +9,7 @@ public class As3_Teams {
     private int stanleyCups;
     private int yearCreated;
     private boolean hasMoved;
-
+    private String moved;
 
 
     //constructor
@@ -25,4 +25,22 @@ public class As3_Teams {
 
     }
 
+
+    public String printMe(){
+       if(hasMoved){
+           moved = "moved";
+       }
+       else{
+           moved = "never moved";
+       }
+        return name + " is located in " + city + " in the " + division + " division with " + wins + " wins this season." + " The team was formed in "+ yearCreated + " and has " + moved;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public String getDivision() {
+        return division;
+    }
 }

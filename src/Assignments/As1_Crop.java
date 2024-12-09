@@ -59,6 +59,9 @@ public String toString(){
     public double harvest(){
         double money;
         money = price*yield*acres;
+        if(money == 0){
+            System.out.println("You must plant this before harvesting!");
+        }
 setAcres(0);
 return money;
 
