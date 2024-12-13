@@ -43,4 +43,28 @@ public class As3_Teams {
     public String getDivision() {
         return division;
     }
+
+    public boolean isHasMoved() {
+        return hasMoved;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getStanleyCups() {
+        return stanleyCups;
+    }
+
+    public int getYearCreated() {
+        return yearCreated;
+    }
+
+    public String getMoved() {
+        return moved;
+    }
 }

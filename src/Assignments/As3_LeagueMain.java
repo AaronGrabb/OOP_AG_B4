@@ -5,6 +5,7 @@ import Examples.Library;
 import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.BufferedReader;
+import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,7 +97,7 @@ public class As3_LeagueMain {
             System.out.println(e);
         }
     }//end loadFile
-    public static void saveFile(String filename, ArrayList <As3_Teams> tempList ) {
+    public static void saveFile(String filename, ArrayList<As3_Teams> tempList ) {
         try {
             PrintWriter file = new PrintWriter(new FileWriter(filename));
 
@@ -104,10 +105,11 @@ public class As3_LeagueMain {
 //the next lines are customized for whatever data you are getting.
                 String toSave ="";
                 toSave = tempList.get(i).getName();  //assumes getter method are used for private variables
-                toSave +="," + tempList.get(i).getAddress();
-                toSave += "," + tempList.get(i).getGrade();
-                toSave +="," + tempList.get(i).getClass();
-                toSave +="," + tempList.get(i).getAverage();
+                toSave +="," + tempList.get(i).getCity();
+                toSave += "," + tempList.get(i).getDivision();
+                toSave +="," + tempList.get(i).getWins();
+                toSave +="," + tempList.get(i).getYearCreated();
+                toSave +="," + tempList.get(i).isHasMoved();
 
 //The above 6 lines could be replaced by a call to a carefully made toString() function
 
