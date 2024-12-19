@@ -15,12 +15,20 @@ public class As3_LeagueMain {
 
     //    allTeams.add(new As3_Teams());
     public static void run() {
+//        ArrayList<As3_Players> allPlayers = new ArrayList<>();
         ArrayList<As3_Teams> allTeams = new ArrayList<>();
         loadFile("data/nhlTeams.csv", allTeams);
 
+        for (int i = 0; i < allTeams.size(); i++) {
+            for (int j = 0; j < 5; j++) {
+                allTeams.get(i).addPlayers(allTeams.get(i).getName() + "Player" + j, 1034+j*8, 67+j,1.3+j/2);
+            }
+        }
+
+
         while (true) {
 
-            System.out.println("Press 1 for printing teams\nPress 2 to find team with most wins\nPress 3 to view divisions\nPress 4 to sort by age\nPress 5 to update stats\nPress 6 to save and exit.");
+            System.out.println("Press 1 for printing teams\nPress 2 to find average amount of wins this season\nPress 3 to view divisions\nPress 4 to sort by age\nPress 5 to update stats\nPress 6 to add a new player\nPress 7 to print players of a team\nPress 8 to save and exit.");
 
 
             int choice = Examples.Library.input.nextInt();
@@ -47,9 +55,44 @@ public class As3_LeagueMain {
                 }
                 if (choice == 4) {
                     System.out.println("Sort by date of formation");
+//                    sortByAge();
+                    for (int i = 0; i < allTeams.size(); i++) {
+
+                            int lowestIndex = i;
+                            for(int j=i+1; j<allTeams.size(); j++){
+                                if(allTeams.get(j).getYearCreated() < allTeams.get(lowestIndex).getYearCreated()){
+                                    lowestIndex = j;
+                                }
+                            }
+                            //swap the data
+                            int temp = allTeams.get(i).getYearCreated();
+                            allTeams.get(i).setYearCreated(allTeams.get(lowestIndex).getYearCreated()) ;
+                            allTeams.get(lowestIndex).setYearCreated(temp);
+
+
+
+                    }
                 }
                 if (choice == 5) {
-                    System.out.println("Update stats");
+                    boolean found = false;
+                    int location = 0;
+                    System.out.println("Update stats, which team needs a update in amount of wins?");
+                    String answer = Library.input.nextLine();
+                    for (int i = 0; i < allTeams.size(); i++) {
+                        if(allTeams.get(i).getName().equalsIgnoreCase(answer)){
+                            found = true;
+                            location = i;
+                        }
+                    }
+                    if(found){
+                        System.out.println("How many wins does this team have now?");
+                        int newWins = Library.input.nextInt();
+                        allTeams.get(location).setWins(newWins);
+
+                    }
+                    else{
+                        System.out.println("Team is not found");
+                    }
                 }
                 if (choice == 3) {
                     System.out.println("View Divisions");
@@ -62,7 +105,30 @@ public class As3_LeagueMain {
 
                 }
 
-                if (choice == 6) {
+                if(choice == 6){
+                    System.out.println("Which team is getting a new player?");
+                    String answer = Library.input.nextLine();
+                    for (int i = 0; i < allTeams.size(); i++) {
+                        if(allTeams.get(i).getName().equalsIgnoreCase(answer)){
+                            allTeams.get(i).addPlayers("George", 1776, 76, 13.5);
+                        }
+
+                    }
+
+                }
+                if(choice == 7){
+                    System.out.println("Which team's players do you want to see?");
+                    System.out.println(allTeams.get(0).getAllPlayers().printMe2());
+                    String answer = Library.input.nextLine();
+                    for (int i = 0; i < allTeams.size(); i++) {
+                        if(allTeams.get(i).getName().equalsIgnoreCase(answer)){
+                            System.out.println(allTeams.get(i).getAllPlayers());
+                        }
+
+                    }
+                }
+                if (choice == 8) {
+                    saveFile("nhlTeams.csv", allTeams);
                     break;
                 }
                 System.out.println();
@@ -70,6 +136,10 @@ public class As3_LeagueMain {
             }//while
 
             System.out.println("Good bye");
+
+
+
+
 
 
         }
@@ -97,6 +167,8 @@ public class As3_LeagueMain {
             System.out.println(e);
         }
     }//end loadFile
+
+
     public static void saveFile(String filename, ArrayList<As3_Teams> tempList ) {
         try {
             PrintWriter file = new PrintWriter(new FileWriter(filename));
@@ -123,5 +195,8 @@ public class As3_LeagueMain {
         }
 
     }//end saveFile
+
+
+
 
 }
